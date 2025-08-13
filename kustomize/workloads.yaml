@@ -566,3 +566,35 @@ spec:
             limits:
               cpu: 300m
               memory: 300Mi
+---
+# CronJob 1: containers per pod: 1; req/limit defined
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: cronjob-reqlim
+  namespace: default
+spec:
+  schedule: "*/5 * * * *"
+  jobTemplate:
+    spec:
+      backoffLimit: 0
+      template:
+        spec:
+          containers:
+          - name: container
+            image: docker.io/sandipandevzero/dakr-cronjob:latest
+            imagePullPolicy: Always
+            command: ["/bin/sh", "-c"]
+            args:
+            - |
+              echo "Running high-load short burst..."
+              stress-ng --cpu 2 --cpu-load 30 --cpu-method loop --vm 1 --vm-bytes 512M --vm-keep --timeout 30s
+              echo "Task completed"
+            resources:
+              requests:
+                cpu: 1000m
+                memory: 256Mi
+              limits:
+                cpu: 4000m
+                memory: 4Gi
+          restartPolicy: Never
