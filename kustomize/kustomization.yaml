@@ -5,3 +5,6 @@ resources:
   - deployment.yaml
   - service.yaml
   - workloads.yaml
+  - productcatalogue-service.yaml
+  - shopfront-service.yaml
+  - stockmanager-service.yaml
