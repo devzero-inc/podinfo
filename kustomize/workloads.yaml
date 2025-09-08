@@ -462,54 +462,54 @@ spec:
             limits:
               cpu: 300m
               memory: 300Mi
----
-apiVersion: batch/v1
-kind: Job
-metadata:
-  name: test-job
-  namespace: default
-spec:
-  template:
-    spec:
-      restartPolicy: Never
-      containers:
-        - name: test-container
-          image: nginx:latest
-          ports:
-            - containerPort: 80
-          resources:
-            requests:
-              cpu: 200m
-              memory: 200Mi
-            limits:
-              cpu: 300m
-              memory: 300Mi
----
-apiVersion: batch/v1
-kind: CronJob
-metadata:
-  name: test-cronjob
-  namespace: default
-spec:
-  schedule: "*/1 * * * *"
-  concurrencyPolicy: Forbid
-  jobTemplate:
-    spec:
-      template:
-        spec:
-          restartPolicy: Never
-          containers:
-            - name: test-container
-              image: nginx:latest
-              ports:
-                - containerPort: 80
-              resources:
-                requests:
-                  cpu: 200m
-                  memory: 200Mi
-                limits:
-                  cpu: 300m
-                  memory: 300Mi
+# ---
+# apiVersion: batch/v1
+# kind: Job
+# metadata:
+#   name: test-job
+#   namespace: default
+# spec:
+#   template:
+#     spec:
+#       restartPolicy: Never
+#       containers:
+#         - name: test-container
+#           image: nginx:latest
+#           ports:
+#             - containerPort: 80
+#           resources:
+#             requests:
+#               cpu: 200m
+#               memory: 200Mi
+#             limits:
+#               cpu: 300m
+#               memory: 300Mi
+# ---
+# apiVersion: batch/v1
+# kind: CronJob
+# metadata:
+#   name: test-cronjob
+#   namespace: default
+# spec:
+#   schedule: "*/1 * * * *"
+#   concurrencyPolicy: Forbid
+#   jobTemplate:
+#     spec:
+#       template:
+#         spec:
+#           restartPolicy: Never
+#           containers:
+#             - name: test-container
+#               image: nginx:latest
+#               ports:
+#                 - containerPort: 80
+#               resources:
+#                 requests:
+#                   cpu: 200m
+#                   memory: 200Mi
+#                 limits:
+#                   cpu: 300m
+#                   memory: 300Mi
 ---
 apiVersion: v1
 kind: ReplicationController
