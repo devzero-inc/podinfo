@@ -163,26 +163,3 @@ spec:
     targetPort: 8080
     protocol: TCP
   type: ClusterIP
----
-apiVersion: v1
-kind: Pod
-metadata:
-  name: fibonacci-pod1
-  labels:
-    app: fibonacci-pod1
-spec:
-  containers:
-  - name: fibonacci
-    image: sandipandevzero/fibonacci:latest
-    imagePullPolicy: Always
-    env:
-    - name: FIBONACCI_INTERVAL
-      value: "1"
-    resources:
-      requests:
-        cpu: 200m
-        memory: 200Mi
-      limits:
-        cpu: 300m
-        memory: 300Mi
-  restartPolicy: Always
